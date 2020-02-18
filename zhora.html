@@ -1,0 +1,64 @@
+<style>
+	body {
+		background: gray;
+	}
+	#field {
+		background: yellow;
+		width: 640px;
+		height: 400px;
+		position: relative;
+	}
+	#zaez {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		height: 100px;
+	}
+</style>
+
+<body>
+	<center>
+	<h1>Пни Жору</h1>
+	<div id="field">
+		<img id="zaez" src="http://d.zaix.ru/hcDR.jpg"/>
+	</div>
+</body>
+
+<script>
+var f = document.getElementById("field");
+f.style.background = "cyan";
+
+var z = document.getElementById("zaez");
+
+setTimeout(preved, 1);
+
+var x = 0, y = 0;
+var vx = 1, vy = 1;
+
+var H = f.clientHeight;
+var W = f.clientWidth;
+
+z.onclick = function() {
+	vx *= 3;
+	vy *= 3;
+}
+function preved() {
+	if (y > H - z.height) {
+		vy = -1;
+	}
+	if (x > W - z.width) {
+		vx = -1;
+	}
+	if (y <= 0) {
+		vy = 1;
+	}
+	if (x <= 0) {
+		vx = 1;
+	}
+	z.style.left = x + 'px';
+	z.style.top = y + 'px';
+	x+= vx;
+	y+= vy;
+	setTimeout(preved, 1);
+}
+</script>
